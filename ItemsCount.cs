@@ -10,6 +10,7 @@ public class ItemsCount : MonoBehaviour
     public float rayDist;
     public int carryItemNumber;
     private RaycastHit2D grabCheck;
+    private bool isGrabbed;
     void Start()
     {
 
@@ -21,24 +22,17 @@ public class ItemsCount : MonoBehaviour
             GameObject theObject = grabCheck.collider.gameObject;
             if(grabCheck.collider != null && grabCheck.collider.tag == "Item"){
             if(Input.GetKey(KeyCode.F)){
-                grabScript.isGrabbed = true;
-                grabScript.enabled = false; 
+                isGrabbed = true;
             }
             } else {
-                 grabScript.isGrabbed = false;
-                 grabScript.enabled = true;
+                 isGrabbed = false;
             }
-            if(grabScript.isGrabbed == true){
+            if(isGrabbed == true){
                 while(carryItemNumber < 1){
                 carryItemNumber = carryItemNumber + 1;
                 }
             } else if(grabScript.isGrabbed == false){
                 carryItemNumber = 0;
-            }
-            if(carryItemNumber > 0){
-                grabScript.enabled = false;
-            } else if(carryItemNumber == 0){
-                 grabScript.enabled = true;
             }
     }
 }
