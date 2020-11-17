@@ -7,6 +7,7 @@ public class DanceScript : MonoBehaviour
     Animation dance;
     public GameObject item;
     public GrabScript GS;
+    public ItemsCount IC;
     void Start()
     {
         dance = GetComponent<Animation>();     
@@ -16,15 +17,15 @@ public class DanceScript : MonoBehaviour
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
-        if(GS.isGrabbed == true){
+        if(IC.isGrabbed == true){
             dance.Stop("DanceItem");
             transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
-        } else if(GS.isGrabbed == false){
+        } else if(IC.isGrabbed == false){
             dance.Play("DanceItem");
         }
-        if(GS.enabled == true){
+        if(IC.enabled == true){
             dance.Play("DanceItem");
-        } else if(GS.enabled == false){
+        } else if(IC.enabled == false){
             dance.Stop("DanceItem");
             transform.localRotation = Quaternion.Euler(new Vector3(0,0,0));
         }
